@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Video from './Video';
 import handshake from './handshake.mp4';
 import lady from './lady.mp4';
+import Button from './Button.js';
 
 class VideoHolder extends Component {
 	constructor(){
@@ -14,7 +15,7 @@ class VideoHolder extends Component {
 		return (
 		<div>
 			< Video file={this.state.file} />
-			<button type="button" onClick={() => this.changeFile()}>Junk</button>
+			<Button disabled={false} action={() => this.changeFile()}/>
 		</div>
 		);
 	}
