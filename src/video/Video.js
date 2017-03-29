@@ -12,9 +12,13 @@ class Video extends Component {
 		</video>	
 		);
 	}
+	updateState(key, value) {
+		this.setState({[key]: value});
+	}
+	
 	onTimeUpdate(){
-		this.setState({time: this.refs.playerRef.currentTime});
-		this.props.timeUpdate();
+		let time = this.refs.playerRef.currentTime;
+		this.setState({time: time}, () => this.props.timeUpdate(time));
 	}
 } 
 

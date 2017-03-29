@@ -15,7 +15,7 @@ class VideoHolder extends Component {
 	render(){
 		return (
 		<div>
-			< Video ref='vidRef' file={this.state.file} timeUpdate={() => this.timeUpdate()} />
+			<Video ref='vidRef' file={this.state.file} timeUpdate={(time) => this.timeUpdate(time)} />
 			<div id='controls'>
 				<Button disabled={this.state.buttonDisabled} action={() => this.changeFile()}/>
 			</div>
@@ -23,17 +23,18 @@ class VideoHolder extends Component {
 		);
 	}
 	changeFile(){
-		this.setState({buttonDisabled: true});
-		console.log(this.state.buttonDisabled);
+		let changes = {
+			buttonDisabled: true
+		};
 		if(this.state.file === handshake){
-			this.setState({file: lady});
+			changes.file = lady;
 		}
 		else{
-			this.setState({file: handshake});
+			changes.file = handshake;
 		}
+		this.setState(changes);
 	}
-	timeUpdate(){
-		var currentTime = this.refs.vidRef.state.time;
+	timeUpdate(currentTime){
 		if(currentTime > 15){
 			this.setState({buttonDisabled: false});
 		}
