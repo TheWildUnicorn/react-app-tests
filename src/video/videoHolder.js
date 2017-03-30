@@ -34,8 +34,12 @@ class VideoHolder extends Component {
 		}
 		this.setState(changes);
 	}
-	timeUpdate(currentTime){
-		if(currentTime > 15){
+	timeUpdate(player){
+		var totalPlayedTime = 0;
+		for(var i = 0; i < player.played.length; ++i){
+			totalPlayedTime += (player.played.end(i) - player.played.start(i));
+		}
+		if(totalPlayedTime + 2 >= player.duration){
 			this.setState({buttonDisabled: false});
 		}
 	}
